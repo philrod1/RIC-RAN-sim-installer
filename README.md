@@ -55,6 +55,7 @@
     sed -i "s|\$HOME|$HOME|g" srs.yml
     sed -i "s|\$HOME|$HOME|g" iperf.yml
     sed -i "s|\$HOME|$HOME|g" startServer.sh
+    chmod +x *.sh
 
 
 ## Get configs
