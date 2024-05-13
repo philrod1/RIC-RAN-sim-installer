@@ -52,6 +52,9 @@
     wget https://raw.githubusercontent.com/philrod1/RIC-RAN-sim-installer/main/stopIperf.sh
     wget https://raw.githubusercontent.com/philrod1/RIC-RAN-sim-installer/main/stopSRS.sh
     wget https://raw.githubusercontent.com/philrod1/RIC-RAN-sim-installer/main/radio.py
+    sed -i "s|\$HOME|$HOME|g" srs.yml
+    sed -i "s|\$HOME|$HOME|g" iperf.yml
+    sed -i "s|\$HOME|$HOME|g" startServer.sh
 
 
 ## Get configs
@@ -71,8 +74,8 @@
 ## What now?
 ### Start the Ricmon web app (in a screen) from inside ~/ricmon with ``npm start``.  Open http://localhost:3000 or http://<ip-address>:3000
 ### Start the things!  From inside ~/scripts
-#### Start srsRAN components with ``sudo -Es ansible-playbook sys.yml``
+#### Start srsRAN components with ``sudo ansible-playbook sys.yml``
 #### Start the radio with ``python3 radio.py``
 #### Check in the srs logs in Ricmon.  The UEs should be assigned IP addresses.  If not, try again.
-#### Start the iperf servers and clients with ``sudo -Es ansible-playbook iperf.yml``
+#### Start the iperf servers and clients with ``sudo ansible-playbook iperf.yml``
 #### Check the SIM in Ricmon.  You should see traffic indicated in the guages
