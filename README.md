@@ -14,7 +14,7 @@
     message "Refresh apt"
     sudo apt update
     sudo apt upgrade -y
-    sudo apt install -y python3-pip npm
+    sudo apt install -y python3-pip npm iperf3
     pip3 install websockets
 
 
@@ -34,6 +34,8 @@
     sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:32080/$KONG_PROXY:32080/g" ./routes/index.js
     sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:8080/$APPMGR_HTTP:8080/g" ./routes/index.js
     sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:3800/$E2MGR_HTTP:3800/g" ./routes/index.js
+    sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:3800/$E2MGR_HTTP:3800/g" ./routes/index.js
+    sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:8765/$myip:8765/g" ./public/javascripts/sketch.js
 
 
 ## Get scripts
@@ -41,6 +43,7 @@
     message "Getting scripts"
     cd ~
     mkdir scripts
+    mkdir iperf
     cd scripts
     wget https://raw.githubusercontent.com/philrod1/RIC-RAN-sim-installer/main/killAllThings.sh
     wget https://raw.githubusercontent.com/philrod1/RIC-RAN-sim-installer/main/iperf.yml
@@ -55,6 +58,8 @@
     sed -i "s|\$HOME|$HOME|g" srs.yml
     sed -i "s|\$HOME|$HOME|g" iperf.yml
     sed -i "s|\$HOME|$HOME|g" startServer.sh
+    sed -i "s|\"\$E2TERM\"|$E2TERM|g" startENB.sh
+    sed -i "s|\"\$myip\"|$myip|g" startENB.sh
     chmod +x *.sh
 
 
@@ -80,3 +85,9 @@
 #### Check in the srs logs in Ricmon.  The UEs should be assigned IP addresses.  If not, try again.
 #### Start the iperf servers and clients with ``sudo ansible-playbook iperf.yml``
 #### Check the SIM in Ricmon.  You should see traffic indicated in the guages
+
+## Go again?
+### This stuff seems flaky and prone to failure.  The start-up routine needs to be done correctly to have any hope.
+### Restarting srsRAN is often required.  So often, in fact, that I made a script to help.
+#### First, stop the radio script with Ctrl-C
+#### Then, run the kill script from the scripts directory ``sudo ./killAllThings.sh``
