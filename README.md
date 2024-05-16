@@ -32,8 +32,8 @@
     cd ricmon
     npm install
     sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:32080/$KONG_PROXY:32080/g" ./routes/index.js
-    sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:8080/$APPMGR_HTTP:8080/g" ./routes/index.js
-    sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:3800/$E2MGR_HTTP:3800/g" ./routes/index.js
+    sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:8080\/ric/$APPMGR_HTTP:8080\/ric/g" ./routes/index.js
+    sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:8080\/api/$ONBOARDER_HTTP:8080\/api/g" ./routes/index.js
     sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:3800/$E2MGR_HTTP:3800/g" ./routes/index.js
     sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:8765/$myip:8765/g" ./public/javascripts/sketch.js
 
