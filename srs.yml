@@ -13,6 +13,7 @@
       register: json_content
 
     - name: "Clear out the old logs"
+      ignore_errors: true
       shell: "rm $HOME/srs_logs/*.log"
 
     - name: "Start EPC"
