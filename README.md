@@ -80,7 +80,7 @@
 ## What now?
 ### Start the Ricmon web app (in a screen) from inside ~/ricmon with ``npm start``.  Open http://localhost:3000 or http://<ip-address>:3000
 ### Start the things!  From inside ~/scripts
-#### Start srsRAN components with ``sudo ansible-playbook sys.yml``
+#### Start srsRAN components with ``sudo ansible-playbook srs.yml``
 #### Start the radio with ``python3 radio.py``
 #### Check in the srs logs in Ricmon.  The UEs should be assigned IP addresses.  If not, try again.
 #### Start the iperf servers and clients with ``sudo ansible-playbook iperf.yml``
